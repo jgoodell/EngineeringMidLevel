@@ -49,3 +49,22 @@ tier of AWS's stack.
 
 We also have a strong affinity for open source technology. If your go-to technology stack includes
 proprietary software, you won't be helping yourself to use it in this project.
+
+--------------------------------------------------------------------------------------------------
+
+## Instructions
+The technology stack for this application is ngynx, python/django, postgre, MacOSX
+
+### ngynx
+
+### python/django
+From the command line type from the root of the git repository where the 'requirements.pip' file
+is located.
+
+    $ pip install -r requirements.pip
+
+This will install all of the necessary python packages and modules for this application.
+
+### postgre
+Download the PostGre.app from postgreapp.com, drag the app to the Applications dicrectory. Double
+click the application and you have a running postgre instance.
