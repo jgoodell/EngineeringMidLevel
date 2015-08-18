@@ -77,9 +77,9 @@ WSGI_APPLICATION = 'feature_request.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'dev_feature_request',
-        'USER': '',
-        'PASSWORD': '',
+        'NAME': 'feature_request_dev',
+        'USER': 'iws_dev',
+        'PASSWORD': 'Password',
         'HOST': 'localhost',
         'PORT': '',
     }
@@ -91,7 +91,7 @@ DATABASES = {
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Chicago'
 
 USE_I18N = True
 

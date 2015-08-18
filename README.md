@@ -75,3 +75,25 @@ After installing PostGre.app add
 to your PATH. Then using PIP install psycopg2 using.
 
     $ pip install psycopg2
+
+#### PostGre Config
+To use PostGre we now need to create the necessary user, database, and grant the user we have
+created permission to use the database. To create the user execute the following from the psql
+command line.
+
+    # CREATE USER iws_dev WITH PASSWORD 'Password';
+
+Now to create the database.
+
+    # CREATE DATABASE feature_request_dev;
+
+Now grant the user permission to use the database.
+
+    # GRANT ALL PRIVILEGES ON DATABASE feature_request_dev to iws_dev;
+
+Now the feature request application will be able to use the database. Execute the following
+command from the root of the django project directory.
+
+    $ python manage.py migrate
+
+All of the necessary tables to run the feature request application will be created.
