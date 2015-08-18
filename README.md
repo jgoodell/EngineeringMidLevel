@@ -53,9 +53,7 @@ proprietary software, you won't be helping yourself to use it in this project.
 --------------------------------------------------------------------------------------------------
 
 ## Instructions
-The technology stack for this application is ngynx, python/django, postgre, MacOSX
-
-### ngynx
+The technology stack for this application is python/django, django dev server, postgre, MacOSX
 
 ### python/django
 From the command line type from the root of the git repository where the 'requirements.pip' file
@@ -68,3 +66,12 @@ This will install all of the necessary python packages and modules for this appl
 ### postgre
 Download the PostGre.app from postgreapp.com, drag the app to the Applications dicrectory. Double
 click the application and you have a running postgre instance.
+
+#### psycopg2
+After installing PostGre.app add 
+
+    /Applications/Postgres.app/Contents/Versions/9.4/bin
+
+to your PATH. Then using PIP install psycopg2 using.
+
+    $ pip install psycopg2
