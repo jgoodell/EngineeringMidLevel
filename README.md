@@ -63,6 +63,17 @@ is located.
 
 This will install all of the necessary python packages and modules for this application.
 
+#### App migration and setup.
+Once the PostGre database is setup, from the root of the django project where the 'manage.py' file is located run the following to setup the tables in the database necessary for the application to run.
+
+    $ python manage.py migrate
+
+Now with the tables in the database create, create the admin user that will administer the application by running the following commands from the root of hte django project.
+
+    $ python manage.py createsuperuser
+
+Follow the prompts for username, email and password creation.
+
 ### postgre
 Download the PostGre.app from postgreapp.com, drag the app to the Applications dicrectory. Double
 click the application and you have a running postgre instance.
