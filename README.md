@@ -124,3 +124,19 @@ Now with the following to command make iws_dev the owner of the database and a s
     # ALTER USER iws_dev WITH SUPERUSER;
 
 Now django will be able to create and delete the test database as needed.
+
+## API Testing
+The application is built around an ReST API over HTTP. To test the we must start the django server using the --settings option after creating and setting up an additional database. From PSQL run the follonwing commands.
+
+    # CREATE DATABASE feature_request_test;
+    # GRANT ALL PRIVILEGES ON DATABASE feature_request_test to iws_dev;
+
+Now apply all the migrations to the new test database. From the django project root run to apply the migrations.
+
+    $ python manage.py migrate --settings=feature_request.settings_test
+
+This points djange manager to a separate settings file configured to run on the new database we've created.
+
+Now we are ready to run the API tests. Change directories into feature_request/rest_api and execute the api test script.
+
+    $ python api_tests.py
