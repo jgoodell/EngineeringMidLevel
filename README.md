@@ -108,3 +108,19 @@ command from the root of the django project directory.
     $ python manage.py migrate
 
 All of the necessary tables to run the feature request application will be created.
+
+#### PostGre Testing Config
+To run the django tests you will need to make the iws_dev user the owner of a test database and a super users. Run the following to create the test database using the default name django will look for.
+
+    # CREATE DATABASE test_feature_request_dev;
+
+Now assign all permissions on the database to the iws_dev user with the following.
+
+    # GRANT ALL PRIVILEGES ON DATABASE test_feature_requeste_dev to iws_dev;
+
+Now with the following to command make iws_dev the owner of the database and a super users.
+
+    # ALTER DATABASE test_feature_request_dev OWNER TO iws_dev;
+    # ALTER USER iws_dev WITH SUPERUSER;
+
+Now django will be able to create and delete the test database as needed.
