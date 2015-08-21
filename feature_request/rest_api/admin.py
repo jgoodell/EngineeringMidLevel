@@ -1,11 +1,11 @@
 from django.contrib import admin
 
-from .models import (Clients,
-                     ProductAreas,
-                     FeatureRequests,
+from .models import (Client,
+                     ProductArea,
+                     FeatureRequest,
                      )
 
-admin.site.register(Clients)
-admin.site.register(ProductAreas)
-admin.site.register(FeatureRequests)
+admin.site.register(Client)
+admin.site.register(ProductArea)
+admin.site.register(FeatureRequest)
 
