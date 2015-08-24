@@ -137,6 +137,13 @@ Now apply all the migrations to the new test database. From the django project r
 
 This points djange manager to a separate settings file configured to run on the new database we've created.
 
+Finally create the superuser in the database feature_request_test.
+
+    $ python manage.py createsuperuser --settings=feature_request.settings_test
+    
+Providing the usernmae 'admin', any email you like, and the password 'Password'.
+
 Now we are ready to run the API tests. Change directories into feature_request/rest_api and execute the api test script.
 
     $ python api_tests.py
+
