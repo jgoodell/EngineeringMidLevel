@@ -5,7 +5,8 @@ from .models import (Client,
 
 from django.shortcuts import get_object_or_404
 
-from rest_framework import viewsets
+from rest_framework import viewsets, status
+from rest_framework.views import APIView
 from rest_framework.response import Response
 
 from .serializers import (ClientSerializer,
@@ -14,27 +15,97 @@ from .serializers import (ClientSerializer,
                           )
 
 
-class ClientViewSet(viewsets.ReadOnlyModelViewSet):
+class ClientListView(APIView):
     """
-    API endpoint for client actions.
+    List of all clients.
     """
-    queryset = Client.objects.all().order_by('name')
-    serializer_class = ClientSerializer
+    def get(self, request, format=None):
+        clients = Client.objects.all()
+        serializer = ClientSerializer(clients, many=True)
+        return Response(serializer.data)
 
 
-class ProductAreaViewSet(viewsets.ReadOnlyModelViewSet):
+class ClientView(APIView):
     """
-    API endpoint for product area actions.
+    Show client resource.
     """
+    def get(self, request, format=None):
+        client = Client.objects.get(pk=request.data['pk'])
+        serializer = ClientSerializer(client, many=False)
+        return Response(serializer.data)
+
+
+class ProductAreaListView(APIView):
+    """
+    List of all product areas.
+    """
+    def get(self, request, format=None):
+        product_areas = ProductArea.objects.all()
+        serializer = ProductAreaSerializer(product_areas, many=True)
+        return Response(serializer.data)
+
+
+class ProductAreaView(APIView):
+    """
+    Show product area resource.
+    """
+    def get(self, request, format=None):
+        product_area = ProductArea.objects.get(pk=request.data['pk'])
+        serializer = ProductAreaSerializer(product_area, many=False)
+        return Response(serializer.data)
+
+
+class FeatureRequestListView(APIView):
+    """
+    List of all feature requests, and create new feature requests.
+    """
+    def get(self, request, format=None):
+        feature_requests = FeatureRequest.objects.all()
+        serializer = FeatureRequestSerializer(feature_requests, many=True)
+        return Response(serializer.data)
+
+    def post(self, request, format=None):
+        serializer = FeatureRequestSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data,
+                            status=status.HTTP_201_CREATED)
+        return Response(serializer.errors,
+                        status=status.HTTP_400_BAD_REQUEST)
     
-    queryset = ProductArea.objects.all().order_by('name')
-    serializer_class = ProductAreaSerializer
 
-
-class FeatureRequestViewSet(viewsets.ModelViewSet):
+class FeatureRequestView(APIView):
     """
-    API endpoint for feature request actions.
+    Show feature request resource.
     """
+    def get(self, request, format=None):
+        feature_request = FeatureRequest.objects.get(
+            pk=request.data['pk'])
+        serializer = FeatureRequestSerializer(feature_request, many=False)
+        return Response(serializer.data)
 
-    queryset = FeatureRequest.objects.all().order_by('target_date')
-    serializer_class = FeatureRequest
+
+#class ClientViewSet(viewsets.ReadOnlyModelViewSet):
+#    """
+#    API endpoint for client actions.
+#    """
+#    queryset = Client.objects.all().order_by('name')
+#    serializer_class = ClientSerializer
+#
+#
+#class ProductAreaViewSet(viewsets.ReadOnlyModelViewSet):
+#    """
+#    API endpoint for product area actions.
+#    """
+#    
+#    queryset = ProductArea.objects.all().order_by('name')
+#    serializer_class = ProductAreaSerializer
+#
+#
+#class FeatureRequestViewSet(viewsets.ModelViewSet):
+#    """
+#    API endpoint for feature request actions.
+#    """
+#
+#    queryset = FeatureRequest.objects.all().order_by('target_date')
+#    serializer_class = FeatureRequest
