@@ -22,13 +22,15 @@ class FeatureRequestSerializer(serializers.HyperlinkedModelSerializer):
                                   max_length=128)
     description = serializers.CharField(required=True, allow_blank=False,
                                         max_length=512)
-    client_uri = serializers.ReadOnlyField(source='client.id')
+    client_uri = serializers.HyperlinkedIdentityField(
+        view_name='client', format='html')
     client_priority = serializers.IntegerField(read_only=False)
     target_date = serializers.DateTimeField()
     ticket_uri = serializers.CharField(required=True, allow_blank=False,
                                        max_length=256)
-    product_area_uri = serializers.ReadOnlyField(
-        source='product_area.id')
+    product_area_uri = serializers.HyperlinkedIdentityField(
+        view_name='product-area', format='html')
+ 
 
     def create(self, validated_data):
         return FeatureRequest.objects.create(**validated_data)

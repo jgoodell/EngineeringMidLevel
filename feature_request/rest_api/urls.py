@@ -27,13 +27,13 @@ urlpatterns = format_suffix_patterns([
         name='product_areas'),
     url(r'^product-areas/(?P<pk>[0-9]+)/$',
         views.ProductAreaView.as_view(),
-        name='product_area'),
+        name='product-area'),
     url(r'^feature-requests/$',
         views.FeatureRequestListView.as_view(),
-        name='feature_requests'),
+        name='feature-requests'),
     url(r'^feature-requests/(?P<pk>[0-9]+)/$',
         views.FeatureRequestView.as_view(),
-        name='feature_request')
+        name='feature-request')
     ])
 
 

@@ -61,11 +61,16 @@ class FeatureRequestListView(APIView):
     """
     def get(self, request, format=None):
         feature_requests = FeatureRequest.objects.all()
-        serializer = FeatureRequestSerializer(feature_requests, many=True)
+        context = {'request':request}
+        serializer = FeatureRequestSerializer(feature_requests,
+                                              many=True,
+                                              context=context)
         return Response(serializer.data)
 
     def post(self, request, format=None):
-        serializer = FeatureRequestSerializer(data=request.data)
+        context = {'request':request}
+        serializer = FeatureRequestSerializer(data=request.data,
+                                              context=context)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data,

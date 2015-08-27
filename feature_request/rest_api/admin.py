@@ -5,7 +5,33 @@ from .models import (Client,
                      FeatureRequest,
                      )
 
-admin.site.register(Client)
-admin.site.register(ProductArea)
+class ClientAdmin(admin.ModelAdmin):
+    fieldsets = [
+        (None, {'fields': ['name']})
+        ]
+
+
+admin.site.register(Client, ClientAdmin)
+
+
+class ProductAreaAdmin(admin.ModelAdmin):
+    fieldsets = [
+        (None, {'fields': ['name']})
+        ]
+
+    
+admin.site.register(ProductArea, ProductAreaAdmin)
+
+
+class FeatureRequestAdmin(admin.ModelAdmin):
+    fieldsets = [
+        (None, {'fields': ['title']}),
+        ('description', {'fields': ['description']}),
+        ('Client URI', {'fields': ['client_uri']}),
+        ('Client Priority', {'fields': ['client_priority']}),
+        ('Target Date', {'fields': ['target_date']}),
+        ('Ticket URI', {'fields': ['ticket_uri']}),
+        ('Product Area URI', {'fields': ['product_area_uri']})
+        ]
 admin.site.register(FeatureRequest)
 
